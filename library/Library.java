@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import Betweenness.Betweenness;
+import IndexTable.Index;
 import KMP.KMP;
 
 public class Library {
@@ -40,15 +41,35 @@ public class Library {
 	public List<Book> getBooks() { return books; }
 	
 	
-	public List<Book> getFilteredBooks(String pattern) {		
+	public List<Book> getFilteredBooksKMP(String pattern) {		
 		
 		List<Book> filteredBooks = new ArrayList<>();
 		
 		try {
 			ArrayList<String> result_KMP = KMP.recherche(pattern, DATABASE_PATH);	
-			result_KMP = Betweenness.classement(result_KMP, 0.75);
+			//result_KMP = Betweenness.classement(result_KMP, 0.75);
 			
 			for(String filepath : result_KMP)
+				filteredBooks.add(new Book(filepath));			
+			
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+		
+		return filteredBooks;
+		
+	}
+	
+	
+	public List<Book> getFilteredBooksIndex(String pattern) {		
+		
+		List<Book> filteredBooks = new ArrayList<>();
+		
+		try {
+			ArrayList<String> result_Index = Index.recherche(pattern, DATABASE_PATH);	
+			//result_KMP = Betweenness.classement(result_KMP, 0.75);
+			
+			for(String filepath : result_Index)
 				filteredBooks.add(new Book(filepath));			
 			
 		} catch (Exception e) {			
