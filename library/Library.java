@@ -11,11 +11,13 @@ import java.util.stream.Stream;
 import Betweenness.Betweenness;
 import IndexTable.Index;
 import KMP.KMP;
+import SimpleIndexing.SimpleIndexing;
 
 public class Library {
 
 	private static Library library = null;
-	private static final String DATABASE_PATH = "/root/bigFatWorkspace/M2/DAAR/DAAR-CLOUD-PROJECT/database50";
+	private static final String DATABASE_PATH = "/root/bigFatWorkspace/M2/DAAR/DAAR-CLOUD-PROJECT/database1664";
+	private static final String DATABASE_INDEX_PATH = "/root/bigFatWorkspace/M2/DAAR/DAAR-CLOUD-PROJECT/index";
 	
 	private List<Book> books = new ArrayList<>();
 	
@@ -37,8 +39,8 @@ public class Library {
 		return library;
 	}
 	
-	
-	public List<Book> getBooks() { return books; }
+	/*only the 30 first*/
+	public List<Book> getBooks() { return books.subList(0, 29); }
 	
 	
 	public List<Book> getFilteredBooksKMP(String pattern) {		
@@ -66,7 +68,7 @@ public class Library {
 		List<Book> filteredBooks = new ArrayList<>();
 		
 		try {
-			ArrayList<String> result_Index = Index.recherche(pattern, DATABASE_PATH);	
+			ArrayList<String> result_Index = SimpleIndexing.recherche(pattern, DATABASE_INDEX_PATH);	
 			//result_KMP = Betweenness.classement(result_KMP, 0.75);
 			
 			for(String filepath : result_Index)
