@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import Betweenness.Betweenness;
 import IndexTable.Index;
 import KMP.KMP;
+import RegEx.RegEx;
 import SimpleIndexing.SimpleIndexing;
 
 public class Library {
@@ -46,6 +47,9 @@ public class Library {
 	public List<Book> getBooks() { return new ArrayList<>(books.subList(0, 29)); }
 	
 	
+	
+
+
 	public List<Book> getFilteredBooksKMP(String pattern) {		
 		
 		List<Book> filteredBooks = new ArrayList<>();

@@ -114,7 +114,7 @@ public class RegEx {
 		System.out.println("Goodbye Mr. Anderson.");
 	}
 	
-	public static ArrayList<String> Recherche(String keyword, String folder_path){
+	public static ArrayList<String> recherche(String keyword, String folder_path){
 		ArrayList<String> result = new ArrayList<String>();
 
 		// S = ' ' + S + ' ';
@@ -123,7 +123,7 @@ public class RegEx {
 		File[] list_files = file.listFiles();
 		for (int i = 0; i < list_files.length; i++) {
 			if (list_files[i].isFile()) {
-				if (Automate(keyword, list_files[i].getPath())) {
+				if (hasAutomate(keyword, list_files[i].getPath())) {
 					result.add(list_files[i].getPath());
 				}
 			}
@@ -132,7 +132,7 @@ public class RegEx {
 		return result;
 	}
 
-	private static boolean Automate(String keyword, String file_path) {
+	private static boolean hasAutomate(String keyword, String file_path) {
 
 		regEx = keyword;
 		if (regEx.length() < 1) {
