@@ -19,14 +19,10 @@ public class Book {
 		
 		bookFile = new File(filepath);
 		nameFile = bookFile.getName();
-		
-		title = Parser.parseTitle(bookFile);
-		author = Parser.parseAuthor(bookFile);
-		postingDate = Parser.parsePostingDate(bookFile);
-		releaseDate = Parser.parseReleaseDate(bookFile);
-		language = Parser.parseLanguage(bookFile);
-		
+		this.parseMetadata();
 	}
+	
+	public void parseMetadata() { Parser.parseMetadata(this); }
 	
 	public String getNameFile() { return nameFile; }	
 	public File getFile() { return bookFile; }
@@ -36,6 +32,14 @@ public class Book {
 	public String getPostingDate() { return postingDate; }
 	public String getReleaseDate() { return releaseDate; }
 	public String getLanguage() { return language; }
+	
+	public void setNameFile(String nameFile) { this.nameFile = nameFile; }	
+	public void setTitle(String title) { this.title = title; }	
+	public void setAuthor(String author) { this.author = author; }	
+	public void setPostingDate(String postingDate) { this.postingDate = postingDate; }	
+	public void setReleaseDate(String releaseDate) { this.releaseDate = releaseDate; }	
+	public void setLanguage(String language) { this.language = language; }	
+	
 	
 	public String getMetadata() {
 		

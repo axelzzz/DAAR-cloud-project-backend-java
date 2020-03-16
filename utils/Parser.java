@@ -13,6 +13,8 @@ import library.Book;
 
 public class Parser {
 	
+	private final static int NBLIGNES = 100;
+	
 	public static void listFilesFolder(final File folder) {
 
 		for(final File fileEntry : folder.listFiles()) {
@@ -42,104 +44,56 @@ public class Parser {
 	}
 	
 	
-	public static String parseTitle(File file) {
+	public static void parseMetadata(Book b) {
 		
-		try (BufferedReader br = new BufferedReader( new FileReader(file) )) {
+		try (BufferedReader br = new BufferedReader( new FileReader(b.getFile()) )) {
 			
 			int i=0;
 			String line;
 			
-			while(i<20) {
-				if((line=br.readLine()).contains("Title:") ) 
-					return line.replace("Title: ", "");
+			while(i<NBLIGNES) {
+				
+				if( (line=br.readLine()).contains("Title:") ) 
+					b.setTitle( line.replace("Title: ", "") );
+				else {
+					if(line.contains("Author:")) 
+						b.setAuthor( line.replace("Author: ", "") );					
+					else {
+						if(line.contains("Posting Date:")) 
+							b.setPostingDate( line.replace("Posting Date: ", "") );
+						else {
+							if(line.contains("Release Date:"))
+								b.setReleaseDate( line.replace("Release Date: ", "") );
+							else {
+								if(line.contains("Language:")) 
+									b.setLanguage( line.replace("Language: ", "") );								
+			
+							}
+						}
+					}
+				}
+				
 				i++;
 			}
+			
+			
+			if(b.getAuthor() == null)
+				b.setAuthor("Unknown");
+			if(b.getTitle() == null)
+				b.setTitle("");
+			if(b.getPostingDate() == null)
+				b.setPostingDate("");
+			if(b.getReleaseDate() == null)
+				b.setReleaseDate("");
+			if(b.getLanguage() == null)
+				b.setLanguage("");
 				
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		return "";
-	}
-	
-	
-    public static String parseAuthor(File file) {
 		
-		try (BufferedReader br = new BufferedReader( new FileReader(file) )) {
-			
-			int i=0;
-			String line;
-			
-			while(i<20) {
-				if((line=br.readLine()).contains("Author:") ) 
-					return line.replace("Author: ", "");
-				i++;
-			}
-				
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
-		return "";
 	}
-    
-
-    public static String parsePostingDate(File file) {
 	
-		try (BufferedReader br = new BufferedReader( new FileReader(file) )) {
-			
-			int i=0;
-			String line;
-			
-			while(i<20) {
-				if((line=br.readLine()).contains("Posting Date:") ) 
-					return line.replace("Posting Date: ", "");
-				i++;
-			}
-				
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
-		return "";
-	}
-    
-    
-    public static String parseReleaseDate(File file) {
-    	
-		try (BufferedReader br = new BufferedReader( new FileReader(file) )) {
-			
-			int i=0;
-			String line;
-			
-			while(i<20) {
-				if((line=br.readLine()).contains("Release Date:") ) 
-					return line.replace("Release Date: ", "");
-				i++;
-			}
-				
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
-		return "";
-	}
-    
-    
-    public static String parseLanguage(File file) {
-    	
-		try (BufferedReader br = new BufferedReader( new FileReader(file) )) {
-			
-			int i=0;
-			String line;
-			
-			while(i<20) {
-				if((line=br.readLine()).contains("Language:") ) 
-					return line.replace("Language: ", "");
-				i++;
-			}
-				
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
-		return "";
-	}
     
 	public static void main(String[] args) {
 		

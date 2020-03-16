@@ -16,8 +16,10 @@ import SimpleIndexing.SimpleIndexing;
 public class Library {
 
 	private static Library library = null;
-	private static final String DATABASE_PATH = "/root/bigFatWorkspace/M2/DAAR/DAAR-CLOUD-PROJECT/database1664";
-	private static final String DATABASE_INDEX_PATH = "/root/bigFatWorkspace/M2/DAAR/DAAR-CLOUD-PROJECT/index";
+	private static final String DATABASE_PATH = "../database1664";
+	private static final String DATABASE_INDEX_PATH = "../index";
+	//private static final String DATABASE_PATH = "D:\Workspace\UPMC\DAAR\cloud\database1664";
+	//private static final String DATABASE_INDEX_PATH = "D:\Workspace\UPMC\DAAR\cloud\index";
 	
 	private List<Book> books = new ArrayList<>();
 	
@@ -26,7 +28,8 @@ public class Library {
 		try (Stream<Path> paths = Files.walk(Paths.get(folderPath))) {
 		    paths
 		        .filter(Files::isRegularFile)
-		        .forEach( p -> books.add(new Book(p.toString())) );
+		        .forEach( p -> books.add(new Book(p.toString()) )
+		        );
 		} catch(IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -40,7 +43,7 @@ public class Library {
 	}
 	
 	/*only the 30 first*/
-	public List<Book> getBooks() { return books.subList(0, 29); }
+	public List<Book> getBooks() { return new ArrayList<>(books.subList(0, 29)); }
 	
 	
 	public List<Book> getFilteredBooksKMP(String pattern) {		
@@ -51,8 +54,11 @@ public class Library {
 			ArrayList<String> result_KMP = KMP.recherche(pattern, DATABASE_PATH);	
 			//result_KMP = Betweenness.classement(result_KMP, 0.75);
 			
-			for(String filepath : result_KMP)
-				filteredBooks.add(new Book(filepath));			
+			for(String filepath : result_KMP) {
+				Book b = new Book(filepath);
+				if(b.getTitle() != "")
+					filteredBooks.add(b);
+			}							
 			
 		} catch (Exception e) {			
 			e.printStackTrace();
@@ -71,8 +77,11 @@ public class Library {
 			ArrayList<String> result_Index = SimpleIndexing.recherche(pattern, DATABASE_PATH);	
 			//result_KMP = Betweenness.classement(result_KMP, 0.75);
 			
-			for(String filepath : result_Index)
-				filteredBooks.add(new Book(filepath));			
+			for(String filepath : result_Index) {
+				Book b = new Book(filepath);
+				if(b.getTitle() != "")
+					filteredBooks.add(b);
+			}							
 			
 		} catch (Exception e) {			
 			e.printStackTrace();
