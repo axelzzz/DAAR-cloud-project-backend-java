@@ -74,7 +74,7 @@ public class Library {
 		List<Book> filteredBooks = new ArrayList<>();
 		
 		try {
-			ArrayList<String> result_Index = SimpleIndexing.recherche(pattern, DATABASE_PATH);	
+			ArrayList<String> result_Index = SimpleIndexing.recherche(pattern.toLowerCase(), DATABASE_PATH);	
 			//result_KMP = Betweenness.classement(result_KMP, 0.75);
 			
 			for(String filepath : result_Index) {
