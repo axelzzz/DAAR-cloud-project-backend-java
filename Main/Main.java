@@ -7,6 +7,8 @@ import KMP.KMP;
 import RegEx.RegEx;
 import IndexTable.Index;
 import SimpleIndexing.SimpleIndexing;
+import SimpleRegEx.SimpleRegEx;
+import Classement.Classement;
 
 
 public class Main {
@@ -15,63 +17,38 @@ public class Main {
 
 		long startTime, endTime;
 
-		String keyword = "Project";
-//		String keyword = "anywhere";	// Error : ne peut pas avoir 2 char identiques
 		String folder_path = "../database1664";
+//		String folder_path = "database1664";
 		
+		
+		
+		// EXEMPLE recherche par SimpleIndexing
+		String keyword = "PROject";
+//		String keyword = "jurisprudence";
 		keyword = keyword.toLowerCase();
-/*
-		startTime = System.currentTimeMillis();
-		ArrayList<String> result_KMP = KMP.recherche(keyword, folder_path);
-		endTime = System.currentTimeMillis();
-		System.out.println("KMP a pris " + (endTime - startTime) + " ms : ");
-		for (String S : result_KMP) {
-			System.out.println("\t" + S);
-		}
-		System.out.println();
-		*/
-		
-		
 		startTime = System.currentTimeMillis();
 		ArrayList<String> result_SI = SimpleIndexing.recherche(keyword, folder_path);
 		endTime = System.currentTimeMillis();
-		System.out.println("SimpleIndexing a pris " + (endTime - startTime) + " ms : ");
-		for (String S : result_SI) {
-			System.out.println("\t" + S);
-		}
-		System.out.println();
+		System.out.println("SimpleIndexing a pris " + (endTime - startTime) + " ms : with " + result_SI.size());
+
+		
+
+		// EXEMPLE recherche par SimpleRegEx
+		String keyword_regex = "PROjec(e|t)";
+		keyword_regex = keyword_regex.toLowerCase();
+		startTime = System.currentTimeMillis();
+		ArrayList<String> result_SR = SimpleRegEx.recherche(keyword_regex, folder_path);
+		endTime = System.currentTimeMillis();
+		System.out.println("SimpleRegEx a pris " + (endTime - startTime) + " ms : with " + result_SR.size());
 
 		
 		
-//		startTime = System.currentTimeMillis();
-//		ArrayList<String> result_I = Index.Recherche(keyword, folder_path);
-//		endTime = System.currentTimeMillis();
-//		System.out.println("Index a pris " + (endTime - startTime) + " ms : ");
-//		for (String S : result_I) {
-//			System.out.println("\t" + S);
-//		}
-//		System.out.println();
+		// EXEMPLE classement
+		startTime = System.currentTimeMillis();
+		ArrayList<String> result_classement = Classement.classement(result_SI);
+		endTime = System.currentTimeMillis();
+		System.out.println("Classement a pris " + (endTime - startTime) + " ms ");
 
-		
-		
-//		startTime = System.currentTimeMillis();
-//		ArrayList<String> result_R = RegEx.Recherche(keyword, folder_path);
-//		endTime = System.currentTimeMillis();
-//		System.out.println("RegEx a pris " + (endTime - startTime) + " ms : ");
-//		for (String S : result_R) {
-//			System.out.println("\t" + S);
-//		}
-//		System.out.println();
-
-		
-		
-//		startTime = System.currentTimeMillis();
-//		ArrayList<String> result_classified = Betweenness.classement(result_KMP, 0.75);
-//		endTime = System.currentTimeMillis();
-//		for (String S : result_classified) {
-//			System.out.println(S);
-//		}
-//		System.out.println("classement a pris " + (endTime - startTime) + " ms : ");
 
 		
 		
