@@ -8,7 +8,7 @@ import RegEx.RegEx;
 import IndexTable.Index;
 import SimpleIndexing.SimpleIndexing;
 import SimpleRegEx.SimpleRegEx;
-import Classement.Classement;
+import Suggestion.Suggestion;
 
 
 public class Main {
@@ -45,7 +45,14 @@ public class Main {
 		
 		// EXEMPLE classement
 		startTime = System.currentTimeMillis();
-		ArrayList<String> result_classement = Classement.classement(result_SI);
+		ArrayList<String> result_classified = Betweenness.classement(result_SR, 0.75);
+		endTime = System.currentTimeMillis();
+		
+		
+		
+		// EXEMPLE Suggestion
+		startTime = System.currentTimeMillis();
+		ArrayList<String> result_Suggestion = Suggestion.suggestion(result_SI);
 		endTime = System.currentTimeMillis();
 		System.out.println("Classement a pris " + (endTime - startTime) + " ms ");
 

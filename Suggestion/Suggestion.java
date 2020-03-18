@@ -1,4 +1,4 @@
-package Classement;
+package Suggestion;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,14 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Classement {
+public class Suggestion {
 
-	public static ArrayList<String> classement(ArrayList<String> books_list) throws Exception {
+	public static ArrayList<String> suggestion(ArrayList<String> books_list) throws Exception {
 		ArrayList<String> result = new ArrayList<String>();
 
-		String BC_Path = "Classement/indice_BC.txt";
-//		String PR_Path = "Classement/indice_PageRank.txt";	// TODO
-//		String CR_Path = "Classement/indice_ClickRate.txt";	// TODO
+		String BC_Path = "Suggestion/indice_BC.txt";
+//		String PR_Path = "Suggestion/indice_PageRank.txt";	// TODO
+//		String CR_Path = "Suggestion/indice_ClickRate.txt";	// TODO
 		
 		File file = new File(BC_Path);
 		InputStreamReader reader = new InputStreamReader(new FileInputStream(file));
@@ -63,7 +63,7 @@ public class Classement {
 		books.add("database1664\59292.txt.utf-8");
 		books.add("database1664\25964-0.txt");
 		books.add("database1664\231.txt.utf-8");
-		ArrayList<String> tmp = classement(books);
+		ArrayList<String> tmp = suggestion(books);
 	}
 
 
