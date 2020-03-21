@@ -17,8 +17,8 @@ import SimpleIndexing.SimpleIndexing;
 public class Library {
 
 	private static Library library = null;
-	private static final String DATABASE_PATH = "../database1664";
-	private static final String DATABASE_INDEX_PATH = "../index";
+	private static final String DATABASE_PATH = "./database1664";
+	private static final String DATABASE_INDEX_PATH = "./index";
 	//private static final String DATABASE_PATH = "D:\Workspace\UPMC\DAAR\cloud\database1664";
 	//private static final String DATABASE_INDEX_PATH = "D:\Workspace\UPMC\DAAR\cloud\index";
 	
