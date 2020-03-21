@@ -94,8 +94,14 @@ public class Betweenness {
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = i + 1; j < list.size(); j++) {
 				float tmp = calculateJaccardDistance(list.get(i), list.get(j));
-				matrice[i][j] = tmp;
-				matrice[j][i] = tmp;
+				if (tmp >= seuil) {
+					matrice[i][j] = 1;
+					matrice[j][i] = 1;
+				} else {
+					matrice[i][j] = 0;
+					matrice[j][i] = 0;
+				}
+
 			}
 		}
 
@@ -107,15 +113,15 @@ public class Betweenness {
 //		}
 //		System.out.println();
 
-		for (int i = 0; i < list.size(); i++) {
-			for (int j = 0; j < list.size(); j++) {
-				if (matrice[i][j] >= seuil) {
-					matrice[i][j] = 1;
-				} else {
-					matrice[i][j] = 0;
-				}
-			}
-		}
+//		for (int i = 0; i < list.size(); i++) {
+//			for (int j = 0; j < list.size(); j++) {
+//				if (matrice[i][j] >= seuil) {
+//					matrice[i][j] = 1;
+//				} else {
+//					matrice[i][j] = 0;
+//				}
+//			}
+//		}
 
 //		for (int i = 0; i < list.size(); i++) {
 //			for (int j = 0; j < list.size(); j++) {

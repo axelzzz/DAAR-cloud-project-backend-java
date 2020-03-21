@@ -31,6 +31,7 @@ public class SimpleIndexing {
 	public static boolean matchingAlgo(String keyword, String folder_path, String file_path) throws Exception {
 
 		File tmp_file = new File("../index/" + file_path.substring(folder_path.length() + 1));
+//		File tmp_file = new File("index/" + file_path.substring(folder_path.length() + 1));
 		if (tmp_file.exists()) {
 			InputStreamReader reader = new InputStreamReader(new FileInputStream(tmp_file));
 			BufferedReader br = new BufferedReader(reader);
