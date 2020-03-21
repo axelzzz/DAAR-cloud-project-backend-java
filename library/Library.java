@@ -47,7 +47,27 @@ public class Library {
 	public List<Book> getBooks() { return new ArrayList<>(books.subList(0, 29)); }
 	
 	
-	
+	public List<Book> getFilteredBooksRegexp(String pattern) {		
+		
+		List<Book> filteredBooks = new ArrayList<>();
+		
+		try {
+			ArrayList<String> result_Regexp = RegEx.recherche(pattern, DATABASE_PATH);	
+			//result_KMP = Betweenness.classement(result_KMP, 0.75);
+			
+			for(String filepath : result_Regexp) {
+				Book b = new Book(filepath);
+				if(b.getTitle() != "")
+					filteredBooks.add(b);
+			}							
+			
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+		
+		return filteredBooks;
+		
+	}
 
 
 	public List<Book> getFilteredBooksKMP(String pattern) {		
