@@ -24,7 +24,8 @@ public class LibraryEntryPoint {
     	long startTime1 = System.nanoTime();
     	
     	try {
-			InetAddress javaAddr = InetAddress.getByName("aqueous-scrubland-31409.herokuapp.com");
+    		InetAddress javaAddr = InetAddress.getByName("localhost");
+			//InetAddress javaAddr = InetAddress.getByName("aqueous-scrubland-31409.herokuapp.com");
 			InetAddress pythonAddr = InetAddress.getByName("cloud-project-backend-django.herokuapp.com");
 			GatewayServer gatewayServer = new GatewayServer(new LibraryEntryPoint());
 	        //GatewayServer gatewayServer = new GatewayServer(new LibraryEntryPoint(), 25333, 25334, javaAddr, pythonAddr, 0, 0, null);
